@@ -1,0 +1,129 @@
+<div class="card text-white bg-success"
+      style="top: 177px; text-transform: capitalize"
+      *ngIf="selectedFriendData">
+      <div *ngIf="!editFriend">
+        <div class="card-header text-center">{{selectedFriendData.name}}</div>
+        <div class="card-body">
+          <p class="card-title">Address: {{selectedFriendData.address}}</p>
+          <p class="card-title">Country: {{selectedFriendData.country}}</p>
+          <p class="card-title">Phone: {{selectedFriendData.phone}}</p>
+        </div>
+        <div class="card-footer text-right">
+          <button href="#" class="btn btn-default" (click)="onClose()">Close</button>
+          <button href="#" class="btn btn-info" (click)="onEditFriend()">Edit Friend</button>
+        </div>
+      </div>
+
+      <div class="card-body" *ngIf="editFriend">
+          <h5 class="mb-4">You are updating {{selectedFriendData.name}}</h5>
+          <form #f="ngForm" (ngSubmit)="onSubmit()" novalidate>
+            <div class="form-group row">
+              <label for="editFriendName" class="col-sm-3 col-form-label">Name: </label>
+              <div class="col-sm-9">
+                <input type="text"
+                      [(ngModel)]="selectedFriendData.name"
+                      #name="ngModel"
+                      class="form-control"
+                      name="name" id="editFriendName"
+                      placeholder="Name"
+                      required
+                      style="text-transform: capitalize"
+                      minlength="3"
+                      [ngClass]="{'is-invalid': name.invalid && name.touched,'is-valid': name.valid}">
+                <div class="alert alert-danger mt-2" role="alert"
+                    *ngIf="name.errors && name.touched">
+                    <p *ngIf="name.errors.minlength" class="mb-0">Name should have more than 3 characters.</p>
+                    <p *ngIf="name.errors.required" class="mb-0">Name is required.</p>
+                </div>
+              </div>
+
+            </div>
+            <div class="form-group row">
+              <label for="editFriendAddress" class="col-sm-3 col-form-label">Address: </label>
+              <div class="col-sm-9">
+                <input type="text"
+                      class="form-control"
+                      name="address"
+                      [(ngModel)]="selectedFriendData.address"
+                      #address="ngModel"
+                      id="editFriendAddress"
+                      placeholder="Address"
+                      required
+                      style="text-transform: capitalize"
+                      [ngClass]="{'is-invalid': address.invalid && address.touched,'is-valid': address.valid}">
+                <div class="alert alert-danger mt-2" role="alert"
+                    *ngIf="address.invalid && address.touched">
+                  Address is required.
+                </div>
+              </div>
+            </div>
+            <div class="form-group row">
+              <label for="editFriendCountry" class="col-sm-3 col-form-label">Country: </label>
+              <div class="col-sm-9">
+                <input type="text"
+                      class="form-control"
+                      name="country"
+                      [(ngModel)]="selectedFriendData.country"
+                      #country="ngModel"
+                      id="editFriendCountry"
+                      placeholder="Country"
+                      required
+                      style="text-transform: capitalize"
+                      [ngClass]="{'is-invalid': country.invalid && country.touched,
+                      'is-valid': country.valid}">
+                <div class="alert alert-danger mt-2" role="alert"
+                    *ngIf="country.invalid && country.touched">
+                  Country is required.
+                </div>
+              </div>
+            </div>
+            <div class="form-group row">
+              <label for="editfriendPhone" class="col-sm-3 col-form-label">Phone: </label>
+              <div class="col-sm-9">
+                <input type="number"
+                      class="form-control"
+                      name="phone"
+                      [(ngModel)]="selectedFriendData.phone"
+                      #phone="ngModel"
+                      id="editfriendPhone"
+                      placeholder="Phone"
+                      required
+                      style="text-transform: capitalize"
+                      [ngClass]="{'is-invalid': phone.invalid && phone.touched,'is-valid': phone.valid}">
+                <div class="alert alert-danger mt-2" role="alert"
+                    *ngIf="phone.invalid && phone.touched">
+                  Phone is required.
+                </div>
+              </div>
+            </div>
+            <div class="form-group row">
+              <label for="friend-avatar" class="col-sm-3 col-form-label">Edit photo: </label>
+              <div class="col-sm-9">
+                <!--(change)="onFileSelected($event)"-->
+                <input  class="form-control"
+                        id="friend-avatar"
+                        name="avatar"
+                        type="file"
+                        #fileInput
+                        accept="image/*"
+                  >
+
+                <div class="alert alert-danger mt-2" role="alert" *ngIf="hasImgError">
+                  Image should be max 1Mb large. Please, use png, jpg or jpeg.
+                </div>
+              </div>
+            </div>
+            <div class="form-group row mt-5 text-right">
+              <div class="col-sm-12">
+                 <!--<button type="button" class="btn btn-default" (click)="onGoBack()">Back</button>-->
+                <button type="submit" class="btn btn-info" [disabled]="f.invalid">Save</button>
+              </div>
+            </div>
+          </form>
+      </div>
+      <div class="card-footer">
+        <div *ngIf="successMsg" class="alert alert-warning text-center" role="alert">
+          The friend has beeen updated.
+        </div>
+      </div>
+</div>

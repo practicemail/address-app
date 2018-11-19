@@ -1,0 +1,26 @@
+<div style="max-width: 600px; margin: 0 auto; background-color:aliceblue; border-radius: 5px; padding: 25px">
+  <h3 class="mb-5">Log in, please :)</h3>
+  <form [formGroup]="loginform" (ngSubmit)="onSubmit()" novalidate>
+      <div class="form-group">
+          <input type="text" class="form-control" id="email" placeholder="Email" formControlName="email"
+          [ngClass]="{'is-invalid': email.invalid && email.touched,
+          'is-valid': email.valid}">
+          <div class="alert alert-danger mt-2" role="alert" *ngIf="email.invalid && email.touched">
+            Name is required.
+          </div>
+      </div>
+  
+        <div class="form-group">
+            <input type="password" class="form-control" id="password" placeholder="Password" 
+            formControlName="password"
+            [ngClass]="{'is-invalid': password.invalid && password.touched,
+            'is-valid': password.valid}">
+            <div class="alert alert-danger mt-2" role="alert" *ngIf="password.invalid && password.touched">
+              Name is required.
+            </div>
+        </div>
+        <div class="form-group mt-5 text-right">
+            <button type="submit" class="btn btn-primary" [disabled]="loginform.invalid">Login</button>            
+        </div>
+  </form>
+</div>
