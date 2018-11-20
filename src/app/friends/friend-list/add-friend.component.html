@@ -46,10 +46,13 @@
     <div class="form-group row">
       <label for="friendPhone" class="col-sm-2 col-form-label">Phone: </label>
       <div class="col-sm-10">
-        <input type="number" class="form-control" id="friendPhone" placeholder="Phone" formControlName="phone"
-        [ngClass]="{'is-invalid': phone.invalid && phone.touched,
-        'is-valid': phone.valid
-        }">
+        <input type="number" class="form-control" id="friendPhone"
+               placeholder="123-4567-8901"
+               formControlName="phone"
+              [ngClass]="{'is-invalid': phone.invalid && phone.touched,
+              'is-valid': phone.valid
+              }"
+        >
         <div class="alert alert-danger mt-2" role="alert" *ngIf="phone.invalid && phone.touched">
           Phone is required.
         </div>

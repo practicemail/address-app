@@ -41,18 +41,17 @@ export class FriendListComponent implements OnInit {
     });
   }
 
-  uploadedImgs() {
-    this.friendService.getUploadedImgs()
-      .subscribe(data => {
-        console.log(data);
-        return this.images = data;
-      });
-  }
+  //uploadedImgs() {
+  //  this.friendService.getUploadedImgs()
+  //    .subscribe(data => {
+  //      console.log(data);
+  //      return this.images = data;
+  //    });
+  //}
 
   onShowFriend(friend) {
     this.friendService.showFriendDetails(friend);
     this.showFriendData = friend;
-    // console.log(this.showFriendData);
   }
 
   onDelete(id: number, avatar: string) {

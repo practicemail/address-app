@@ -24,7 +24,7 @@ export class FriendService {
 
   constructor(private httpClient: HttpClient) {}
   // get all addresses
-  getFriends(): Observable<Friend[]> {
+  getFriends(): Observable<any> {
     return this.httpClient.get(`${this.apiUrl}/friends`)
       .catch(this.handleError);
   }
@@ -36,14 +36,14 @@ export class FriendService {
   }
 
   // create a user
-  createFriend(friend): Observable<Friend> {
+  createFriend(friend): Observable<any> {
     return this.httpClient.post(`${this.apiUrl}/friends`, friend)
       .do(friend => this.friendCreated(friend))
       .catch(this.handleError);
   }
 
   // update a user
-  updateFriend(friend, id): Observable<Friend> {
+  updateFriend(friend, id): Observable<any> {
     return this.httpClient.put(`${this.apiUrl}/friends/${id}`, friend)
       .catch(this.handleError);
   }

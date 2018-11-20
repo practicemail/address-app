@@ -1,18 +1,26 @@
-<h3>Friends: </h3>
-<!--<button (click)="uploadedImgs()">click for images</button>-->
-<div class="mb-5 text-right">
-  <button type="button" class="btn btn-success" routerLink="/add-friend">+ Add New Friend</button>
-</div>
+<section>
+  <h3>Contact list: </h3>
 
-<table class="table table-striped mb-5">
-  <thead>
+  <div class="mb-5 text-right">
+    <button type="button" class="btn btn-success border-dark" routerLink="/add-friend">+ Add New Contact</button>
+  </div>
+
+  <div class="input-group mb-3">
+    <input type="search" class="form-control" placeholder="Search contacts" aria-label="Search contacts" aria-describedby="Search contacts">
+    <div class="input-group-append">
+      <span class="input-group-text" id="basic-search">Search</span>
+    </div>
+  </div>
+
+  <table class="table table-striped mb-5">
+    <thead>
     <tr>
       <th scope="col">#</th>
       <th scope="col">Name</th>
       <th scope="col">Address</th>
     </tr>
-  </thead>
-  <tbody>
+    </thead>
+    <tbody>
     <tr *ngFor="let friend of friends | sort: 'name'; let i = index"
         style="text-transform: capitalize;">
       <th scope="row">{{i + 1}}</th>
@@ -22,16 +30,17 @@
       </td>
       <td>{{friend.name}}</td>
       <td>{{friend.address}}</td>
-      <td style="cursor: pointer;" (click)="onShowFriend(friend)">Details</td>
-      <td style="cursor: pointer;" (click)="openModal(template, friend.id, friend.avatar); onShowFriend(false)">X</td>
+      <td style="cursor: pointer" class="text-info" (click)="onShowFriend(friend)">Details</td>
+      <td style="cursor: pointer" class="text-danger" (click)="openModal(template, friend.id, friend.avatar); onShowFriend(false)">X</td>
     </tr>
-  </tbody>
-</table>
+    </tbody>
+  </table>
+</section>
 
 <ng-template #template>
   <div class="modal-body text-center">
     <p>Are you sure?</p>
-    <button type="button" class="btn btn-default" (click)="decline()" >Cancel</button>
+    <button type="button" class="btn btn-default mr-3" (click)="decline()" >Cancel</button>
     <button type="button" class="btn btn-danger" (click)="confirm()" >Remove</button>
   </div>
 </ng-template>

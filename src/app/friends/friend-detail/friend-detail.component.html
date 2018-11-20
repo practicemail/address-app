@@ -1,4 +1,4 @@
-<div class="card text-white bg-success"
+<div class="card text-white bg-info"
       style="top: 177px; text-transform: capitalize"
       *ngIf="selectedFriendData">
       <div *ngIf="!editFriend">
@@ -9,8 +9,8 @@
           <p class="card-title">Phone: {{selectedFriendData.phone}}</p>
         </div>
         <div class="card-footer text-right">
-          <button href="#" class="btn btn-default" (click)="onClose()">Close</button>
-          <button href="#" class="btn btn-info" (click)="onEditFriend()">Edit Friend</button>
+          <button href="#" class="btn btn-default mr-3" (click)="onClose()">Close</button>
+          <button href="#" class="btn btn-success border-dark" (click)="onEditFriend()">Edit Contact</button>
         </div>
       </div>
 
@@ -116,7 +116,7 @@
             <div class="form-group row mt-5 text-right">
               <div class="col-sm-12">
                  <!--<button type="button" class="btn btn-default" (click)="onGoBack()">Back</button>-->
-                <button type="submit" class="btn btn-info" [disabled]="f.invalid">Save</button>
+                <button type="submit" class="btn btn-success border-dark" [disabled]="f.invalid">Save changes</button>
               </div>
             </div>
           </form>
