@@ -12,7 +12,6 @@ import { ModalModule } from 'ngx-bootstrap/modal';
 
 import { AppComponent } from './app.component';
 import { FriendsComponent } from './friends/friends.component';
-import { FriendListComponent } from './friends/friend-list/friend-list.component';
 import { AddFriendComponent } from './friends/add-friend-modal.component';
 import { FriendDetailComponent } from './friends/show-details-modal.component';
 import { HeaderComponent } from './shared/header/header.component';
@@ -37,7 +36,6 @@ import { LoginComponent } from './login/login.component';
 @NgModule({
   declarations: [
     AppComponent,
-    FriendListComponent,
     FriendDetailComponent,
     HeaderComponent,
     FooterComponent,
