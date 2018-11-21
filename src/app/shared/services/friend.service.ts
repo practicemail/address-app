@@ -3,13 +3,13 @@ import { HttpClient, HttpHeaders, HttpEvent, HttpParams, HttpRequest } from '@an
 import {Observable} from 'rxjs/Observable';
 import { Subject } from 'rxjs/Subject';
 import 'rxjs/add/operator/catch';
+import { _throw } from 'rxjs/observable/throw';
 
 import { Friend } from '../models/friend';
 
 @Injectable()
 export class FriendService {
   friends: Friend[];
-  // showDetails: Friend;
   private apiUrl = 'http://localhost:3000/api';
 
   // observable source
@@ -29,11 +29,11 @@ export class FriendService {
       .catch(this.handleError);
   }
 
-  // get uploaded images
-  getUploadedImgs(): Observable<any> {
-    return this.httpClient.get(`${this.apiUrl}/uploads`)
-      .catch(this.handleError);
-  }
+  // get uploaded images for dist
+  //getUploadedImgs(): Observable<any> {
+  //  return this.httpClient.get(`${this.apiUrl}/uploads`)
+  //    .catch(this.handleError);
+  //}
 
   // create a user
   createFriend(friend): Observable<any> {
@@ -54,10 +54,6 @@ export class FriendService {
     return this.httpClient.delete(`${this.apiUrl}/friends/${id}/${avatar}`)
       .do(res => this.userDeleted(id))
       .catch(this.handleError);
-  }
-
-  showFriendDetails(data) {
-    return this.showDetails.next(data);
   }
 
   // The user was created. Add this info to our stream.
@@ -86,6 +82,6 @@ export class FriendService {
       errMessage = err.message ? err.message : err.toString();
     }
 
-    return Observable.throw(errMessage);
+    return _throw(errMessage);
   }
 }

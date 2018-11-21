@@ -49,10 +49,10 @@ export class FriendListComponent implements OnInit {
   //    });
   //}
 
-  onShowFriend(friend) {
-    this.friendService.showFriendDetails(friend);
-    this.showFriendData = friend;
-  }
+  //onShowFriend(friend) {
+  //  this.friendService.showFriendDetails(friend);
+  //  this.showFriendData = friend;
+  //}
 
   onDelete(id: number, avatar: string) {
     this.friendService.deleteFriend(id, avatar).subscribe(

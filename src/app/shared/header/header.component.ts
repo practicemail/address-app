@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 
 @Component({
-  selector: 'header-app',
+  selector: 'app-header',
   template: `
     <header>
         <nav class="navbar navbar-light bg-info">

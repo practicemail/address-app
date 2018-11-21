@@ -21,9 +21,9 @@ export const routes: Routes = [
     path: 'address-book',
     component: FriendsComponent,
   },
-  { path: 'add-friend',
-    component: AddFriendComponent
-  },
+  //{ path: 'add-friend',
+  //  component: AddFriendComponent
+  //},
   { path: '404',
     component: NotFoundComponent
   },

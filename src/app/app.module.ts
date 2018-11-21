@@ -13,12 +13,14 @@ import { ModalModule } from 'ngx-bootstrap/modal';
 import { AppComponent } from './app.component';
 import { FriendsComponent } from './friends/friends.component';
 import { FriendListComponent } from './friends/friend-list/friend-list.component';
-import { AddFriendComponent } from './friends/friend-list/add-friend.component';
-import { FriendDetailComponent } from './friends/friend-detail/friend-detail.component';
+import { AddFriendComponent } from './friends/add-friend-modal.component';
+import { FriendDetailComponent } from './friends/show-details-modal.component';
 import { HeaderComponent } from './shared/header/header.component';
+import { FooterComponent } from './shared/footer/footer.component';
 import { ArraySortPipe } from './common/sort.pipe';
 
 import { FriendService } from './shared/services/friend.service';
+import { FriendModalService } from './friends/friend-modal.service';
 import { BsModalRef } from 'ngx-bootstrap/modal/bs-modal-ref.service';
 import {CarouselModule} from "angular2-carousel";
 
@@ -38,6 +40,7 @@ import { LoginComponent } from './login/login.component';
     FriendListComponent,
     FriendDetailComponent,
     HeaderComponent,
+    FooterComponent,
     ArraySortPipe,
     FriendsComponent,
     AddFriendComponent,
@@ -54,7 +57,11 @@ import { LoginComponent } from './login/login.component';
     routing,
     CarouselModule
   ],
-  providers: [FriendService, BsModalRef, ArraySortPipe],
+  entryComponents: [
+    AddFriendComponent,
+    FriendDetailComponent
+  ],
+  providers: [FriendService,FriendModalService, BsModalRef, ArraySortPipe],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

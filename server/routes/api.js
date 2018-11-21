@@ -157,7 +157,6 @@ router.post('/friends',upload, function (req, res, next) {
 
 // edit friend
 router.put('/friends/:id', upload, function (req, res, next) {
-  //console.log(req.file);
   pool.getConnection(function(err, connection) {
     var friend = {
       name: req.body.name,
