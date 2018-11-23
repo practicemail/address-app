@@ -13,16 +13,15 @@ import { Friend } from '../shared/models/friend';
 })
 
 export class AddFriendComponent implements OnInit {
-  title: string;
-  list: any[] = [];
   friendform: FormGroup;
   name: FormControl;
   address: FormControl;
   country: FormControl;
   phone: FormControl;
-  avatar: FormControl;
   avatarImage: File;
   hasImgError: boolean;
+  friends: Array<Object>;
+  url: any;
 
   @ViewChild('fileInput') fileInput: ElementRef;
 
@@ -44,8 +43,7 @@ export class AddFriendComponent implements OnInit {
     this.name = new FormControl('', [Validators.required, Validators.minLength(3)]),
       this.address = new FormControl('', Validators.required),
       this.country = new FormControl('', Validators.required),
-      this.phone = new FormControl('', Validators.required),
-      this.avatar = new FormControl('', [])
+      this.phone = new FormControl('', Validators.required)
   }
 
   createForm() {
@@ -53,9 +51,21 @@ export class AddFriendComponent implements OnInit {
       name: this.name,
       address: this.address,
       country: this.country,
-      phone: this.phone,
-      avatar: this.avatar
+      phone: this.phone
     });
+  }
+
+  onSelectFile(event) {
+    if (event.target.files && event.target.files[0]) {
+      var reader = new FileReader();
+
+      reader.readAsDataURL(event.target.files[0]); // read file as data url
+
+      reader.onload = (event) => { // called once readAsDataURL is completed
+        //this.url = event.target.result;
+        this.url = reader.result;
+      }
+    }
   }
 
   onSubmit() {
@@ -81,8 +91,17 @@ export class AddFriendComponent implements OnInit {
 
       this.friendService.createFriend(formData).subscribe(
           data => {
-          this.friendform.reset();
-          this.decline();
+            this.friends.unshift(
+              {
+                name: data.name,
+                address: data.address,
+                country: data.country,
+                phone: data.phone,
+                avatar: this.url
+              }
+            );
+            this.friendform.reset();
+            this.decline();
 
           return true;
         },

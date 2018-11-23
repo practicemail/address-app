@@ -67,8 +67,8 @@
                 id="friend-avatar"
                 name="avatar"
                 type="file"
-                formControlName="avatar"
                 #fileInput
+                (change)="onSelectFile($event)"
                 accept="image/*"
           >
 
@@ -77,6 +77,14 @@
         </div>
       </div>
     </div>
+
+    <div class="form-group row" *ngIf="url">
+      <label for="friend-avatar" class="col-sm-2 col-form-label">Preview:</label>
+      <div class="col-sm-3">
+        <img style="width: 100%; display: block;" src="{{url}}" alt="preview-avatar"/>
+      </div>
+    </div>
+
     <div class="form-group row mt-5 text-right">
       <div class="col-sm-12">
         <button type="button" class="btn btn-default mr-3" (click)="decline()">Cancel</button>
@@ -85,18 +93,3 @@
     </div>
   </form>
 </div>
-
-
-<!--<hr/>-->
-<!--<hr/>-->
-<!--<hr/>-->
-<!--<h3>Proba</h3>-->
-<!--<div class="form-group row">-->
-<!--<label class="col-sm-3">Upload image:</label>-->
-<!--<form class="col-sm-9 clearfix" enctype="multipart/form-data">-->
-<!--<input  class="form-control"-->
-<!--(change)="onFileSelected($event)"-->
-<!--type="file" name="avatar" style="max-width: 250px; float: left">-->
-<!--&lt;!&ndash;<button type="submit" class="btn btn-danger float-right" (click)="onUpload()">Upload image</button>&ndash;&gt;-->
-<!--</form>-->
-<!--</div>-->

@@ -14,7 +14,6 @@ export class FriendDetailComponent implements OnInit {
   editFriend: boolean = false;
   successMsg: boolean = false;
   avatarImage: File;
-  _subscription;
   friend: Friend;
 
   // $ViewChild for reseting the form and checking if it's valid
@@ -34,23 +33,12 @@ export class FriendDetailComponent implements OnInit {
     this.editFriend = true;
   }
 
-  selectedItem(eventData: Friend) {
-    this.editFriend = false;
-  }
-
   onGoBack() {
     this.editFriend = false;
   }
 
   onSubmit() {
     const image = this.fileInput.nativeElement;
-
-    if(image.files && image.files[0]) {
-      this.avatarImage = image.files[0];
-      this.form.value.avatar = this.avatarImage;
-    }
-
-    this.form.value.oldAvatar = this.friend.avatar ? this.friend.avatar : '';
 
     let headers = new HttpHeaders();
     /** In Angular 5, including the header Content-Type can invalidate your request */
@@ -62,8 +50,19 @@ export class FriendDetailComponent implements OnInit {
     formData.append('address', this.form.value.address);
     formData.append('country', this.form.value.country);
     formData.append('phone', this.form.value.phone);
-    formData.append('avatar', this.form.value.avatar);
-    formData.append('oldAvatar', this.form.value.oldAvatar);
+
+    if(image.files && image.files[0]) {
+      this.avatarImage = image.files[0];
+      this.form.value.avatar = this.avatarImage;
+      this.form.value.oldAvatar = this.friend.avatar;
+
+      formData.append('avatar', this.form.value.avatar);
+      formData.append('oldAvatar', this.form.value.oldAvatar);
+    } else if (this.friend.avatar !== null) {
+      this.form.value.oldAvatar = this.friend.avatar;
+      formData.append('oldAvatar', this.form.value.oldAvatar);
+    }
+
 
     if (this.form.valid) {
       this.friendService.updateFriend(formData, this.friend.id).subscribe(

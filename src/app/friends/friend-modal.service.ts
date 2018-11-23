@@ -13,8 +13,11 @@ export class FriendModalService {
   bsModalRef: BsModalRef;
   constructor(private modalService: BsModalService) {}
 
-  openModalAddNewFriend() {
-    this.bsModalRef = this.modalService.show(AddFriendComponent);
+  openModalAddNewFriend(list) {
+    const initialState = {
+      friends: list,
+    };
+    this.bsModalRef = this.modalService.show(AddFriendComponent, {initialState});
   }
 
   openModalShowDetails(friend) {

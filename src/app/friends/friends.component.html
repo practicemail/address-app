@@ -28,7 +28,8 @@
         <th scope="row">{{i + 1}}</th>
         <td>
           <img *ngIf="!friend.avatar" src="assets/images/ninja.png" alt="default-avatar-img " class="img-responsive" style="max-width: 30px"/>
-          <img *ngIf="friend.avatar" src="assets/uploads/{{friend.avatar}}" alt="avatar-img" class="img-responsive" style="max-width: 30px"/>
+          <img *ngIf="friend.avatar && friend.avatar.indexOf('base64') == -1" src="assets/uploads/{{friend.avatar}}" alt="avatar-img" class="img-responsive" style="max-width: 30px"/>
+          <img alt="avatar-img" *ngIf="friend.avatar && friend.avatar.indexOf('base64') >= 0" src="{{friend.avatar}}" class="img-responsive" style="max-width: 30px"/>
         </td>
         <td>{{friend.name}}</td>
         <td>{{friend.address}}</td>

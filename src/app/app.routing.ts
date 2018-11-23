@@ -12,12 +12,12 @@ export const routes: Routes = [
     },
   {
     path: '',
-    redirectTo: '/address-book',
-    pathMatch: 'full'
+    component: FriendsComponent,
   },
   {
-    path: 'address-book',
-    component: FriendsComponent,
+    path: '',
+    redirectTo: '',
+    pathMatch: 'full'
   },
   { path: '404',
     component: NotFoundComponent

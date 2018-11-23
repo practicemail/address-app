@@ -64,7 +64,7 @@ export class FriendsComponent implements OnInit {
 
   // Add a new friend modal
   onAddNewFriend() {
-    this.friendModalService.openModalAddNewFriend();
+    this.friendModalService.openModalAddNewFriend(this.friends);
   }
 
   //Show friend details modal

@@ -35,7 +35,7 @@ var storage = multer.diskStorage({
 var upload = multer({
   storage: storage,
   // in bytes
-  limits: {fileSize: 1000000},
+  limits: {fileSize: 1024000},
   fileFilter: function(req, file, cb) {
     checkFileType(file, cb);
   }
@@ -166,10 +166,9 @@ router.put('/friends/:id', upload, function (req, res, next) {
     };
 
     //Remove the old avatar
-    if (req.body.oldAvatar && req.file !== undefined) {
+    if (req.body.oldAvatar !== undefined && req.body.oldAvatar !== 'null' && req.file === undefined) {
       fs.unlinkSync(avatar_path + "/" + req.body.oldAvatar);
     }
-
 
     if (req.file !== undefined) {
       friend.avatarNewPath =  req.file.filename + "[150]" + path.extname(req.file.originalname);
@@ -213,7 +212,7 @@ router.put('/friends/:id', upload, function (req, res, next) {
 router.delete('/friends/:id/:avatar', function (req, res, next) {
 
   // Remove avatar from storage
-  if (req.params.avatar !== 'null') {
+  if (req.params.avatar !== 'null' ) {
     fs.unlinkSync(avatar_path + "/" + req.params.avatar);
   }
 

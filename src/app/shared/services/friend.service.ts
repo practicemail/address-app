@@ -15,7 +15,7 @@ export class FriendService {
   // observable source
   private friendCreatedSource = new Subject<Friend>();
   private userDeletedSource = new Subject();
-  showDetails: Subject<Friend> = new Subject<Friend>();
+  //showDetails: Subject<Friend> = new Subject<Friend>();
   // private friendDetailsChange: Subject<Friend> = new Subject<Friend>();
 
   // observable stream (umesto stream na kraju ide $)
